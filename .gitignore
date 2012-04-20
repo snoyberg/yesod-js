@@ -4,3 +4,5 @@ cabal-dev
 *.hi
 *.chi
 *.chs.h
+*.swp
+client_session_key.aes
