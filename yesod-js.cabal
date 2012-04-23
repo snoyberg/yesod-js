@@ -32,7 +32,7 @@ Executable fullname
                      , yesod-js
 
 Executable todo
-  Main-is:             todo.hs
+  Main-is:             todo.lhs
   hs-source-dirs:      samples
   Build-depends:       base               >= 4          && < 5
                      , warp               >= 1.2        && < 1.3

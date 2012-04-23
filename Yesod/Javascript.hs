@@ -246,7 +246,7 @@ button inside (JSBody body) = do
     let var = JSVar id' -- just a hack
     tell mempty
         { jsdEvents = Map.singleton var $ \_ ->
-            "$('#" <> fromText id' <> "').click(function(){return " <> body <> "});"
+            "$('#" <> fromText id' <> "').click(function(){" <> body <> "return false});"
         }
     return [whamlet|<button id=#{id'}>^{inside}|]
 
