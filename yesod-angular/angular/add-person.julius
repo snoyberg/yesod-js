@@ -1,0 +1,9 @@
+function($scope, $http, $location) {
+    $scope.addPerson = function(){
+        $http.post("#{cmdAddPerson}", $scope.newPerson).success(function(data){
+            $location.path("/people/" + data[0]);
+        });
+    };
+
+    $scope.newPerson = {"name":"Unnamed","age":25};
+}

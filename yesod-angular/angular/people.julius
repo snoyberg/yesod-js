@@ -1,0 +1,5 @@
+function($scope, $http) {
+    $http.post("#{cmdGetPeople}", []).success(function(data) {
+        $scope.people = data;
+    });
+}

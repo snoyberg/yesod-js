@@ -1,0 +1,4 @@
+<p>Name: {{person.name}}
+<p>Age: {{person.age}}
+<p>
+    <a href=#/people>Return to people list

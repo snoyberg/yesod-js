@@ -1,0 +1,6 @@
+<p>This is the people template
+<ul>
+    <li ng-repeat="person in people">
+        <a href=#/people/{{person.id}}>{{person.name}}
+<p>
+    <a href=#/add-person>Add a person

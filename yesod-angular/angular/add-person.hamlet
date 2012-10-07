@@ -1,0 +1,9 @@
+<form ng-submit=addPerson()>
+    <label>Name
+    <input type=text ng-model=newPerson.name>
+    <br>
+    <label>Age
+    <input type=number ng-model=newPerson.age>
+    <br>
+    <button>Add
+    <a href=#/people>Cancel
