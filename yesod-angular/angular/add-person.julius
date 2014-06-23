@@ -1,6 +1,6 @@
 function($scope, $http, $location) {
     $scope.addPerson = function(){
-        $http.post("#{cmdAddPerson}", $scope.newPerson).success(function(data){
+        $http.post("#{rawJS cmdAddPerson}", $scope.newPerson).success(function(data){
             $location.path("/people/" + data[0]);
         });
     };
