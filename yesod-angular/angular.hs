@@ -1,14 +1,17 @@
-{-# LANGUAGE OverloadedStrings, TemplateHaskell, QuasiQuotes, TypeFamilies, MultiParamTypeClasses, ScopedTypeVariables, GeneralizedNewtypeDeriving, RecordWildCards #-}
+{-# LANGUAGE OverloadedStrings, TemplateHaskell, QuasiQuotes #-}
+{-# LANGUAGE TypeFamilies, MultiParamTypeClasses, ScopedTypeVariables #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, RecordWildCards #-}
 module Main (main) where
 
-import Yesod
-import Yesod.Static
-import Yesod.Angular
-import Data.IORef
-import Data.Text (pack)
-import Data.Map (Map)
+import           Data.IORef (IORef, atomicModifyIORef, newIORef, readIORef)
+import           Data.Map (Map)
 import qualified Data.Map as Map
-import Types
+import           Data.Text (pack)
+import           Text.Julius (rawJS)
+import           Types
+import           Yesod
+import           Yesod.Angular
+import           Yesod.Static
 
 data App = App
     { getStatic :: Static
@@ -22,12 +25,9 @@ mkYesod "App" [parseRoutes|
 |]
 
 instance Yesod App
-instance YesodAngular App where
-    urlAngularJs _ = Left $ StaticR $ StaticRoute ["angular", "angular.min.js"] []
+instance YesodAngular App
 
-type Angular = GAngular App App ()
-
-handleHomeR :: Handler RepHtml
+handleHomeR :: Handler Html
 handleHomeR = runAngular $ do
     cmdGetPeople <- addCommand $ \() -> do
         people' <- getYesod >>= liftIO . readIORef . ipeople
@@ -57,4 +57,4 @@ main = do
     s <- static "static"
     p <- newIORef Map.empty
     ni <- newIORef 1
-    warpDebug 3000 $ App s p ni
+    warp 3000 $ App s p ni

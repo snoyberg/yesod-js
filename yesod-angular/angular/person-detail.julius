@@ -1,5 +1,5 @@
 function($scope, $routeParams, $http, $location) {
-    $http.post("#{cmdPersonDetail}", [$routeParams.personId]).success(function(data) {
+    $http.post("#{rawJS cmdPersonDetail}", [$routeParams.personId]).success(function(data) {
         $scope.person = data;
     }).error(function(){
         $location.path("/people");
